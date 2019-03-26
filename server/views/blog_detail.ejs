@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html class="no-js" lang="">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Admin WAE | Dashboard</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <% include ./static_header %>
+  </head>
+
+  <body>
+    <!--[if lt IE 8]>
+      <p class="browserupgrade">
+        You are using an <strong>outdated</strong> browser. Please
+        <a href="http://browsehappy.com/">upgrade your browser</a> to improve
+        your experience.
+      </p>
+    <![endif]-->
+    <!-- Start Header Top Area -->
+    <div class="header-top-area">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+            <div class="logo-area">
+              <a href="#">
+                <img src="//wae.vn/static/notika/img/logo/logo.png" alt="" />
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Header Top Area -->
+    <!-- Mobile Menu start -->
+    <div class="mobile-menu-area">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="mobile-menu">
+              <nav id="dropdown">
+                <ul class="mobile-menu-nav">
+                  <li>
+                    <a href="/cmstool">Dashboard</a>
+                  </li>
+                  <li>
+                    <a href="/cmstool/categories">Categories</a>
+                  </li>
+                  <li class="active">
+                    <a href="/cmstool/blogs">Blogs</a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Mobile Menu end -->
+    <!-- Main Menu area start-->
+    <div class="main-menu-area mg-tb-40">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <ul class="nav nav-tabs notika-menu-wrap menu-it-icon-pro">
+              <li>
+                <a href="/cmstool">
+                  <i class="notika-icon notika-house"></i> Dashboard
+                </a>
+              </li>
+              <li>
+                <a href="/cmstool/categories">
+                  <i class="notika-icon notika-form"></i> Categories
+                </a>
+              </li>
+              <li class="active">
+                <a
+                  href="/cmstool/blogs?categoryID=<%= (locals.categoryID)?locals.categoryID: '' %>"
+                >
+                  <i class="notika-icon notika-form"></i> Blogs
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Main Menu area End-->
+    <!-- Start Blog detail area -->
+    <div class="form-example-area">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="form-example-wrap mg-t-30">
+              <div class="cmp-tb-hd cmp-int-hd">
+                <h2>
+                  Blog <%= (locals.blog)?locals.blog.title : '' %>
+                </h2>
+              </div>
+              <form
+                name="blog-form-detail"
+                method="POST"
+                action="/cmstool/blogs/createorupdate"
+              >
+                <div class="form-example-int form-horizental mg-t-15">
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                        <label class="hrzn-fm">Title</label>
+                      </div>
+                      <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
+                        <div class="nk-int-st">
+                          <input
+                            type="text"
+                            class="form-control input-sm"
+                            value="<%= (locals.blog)?locals.blog.title : '' %>"
+                            name="title"
+                            autocomplete="off"
+                          />
+                          <input
+                            type="hidden"
+                            class="form-control input-sm"
+                            value="<%= (locals.blog)?locals.blog.id : '' %>"
+                            name="id"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-example-int form-horizental mg-t-15">
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                        <label class="hrzn-fm">Author</label>
+                      </div>
+                      <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
+                        <div class="nk-int-st">
+                          <input
+                            type="text"
+                            class="form-control input-sm"
+                            value="<%= (locals.blog)?locals.blog.author : '' %>"
+                            name="author"
+                            autocomplete="off"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-example-int form-horizental mg-t-15">
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                        <label class="hrzn-fm">Thumbnail</label>
+                      </div>
+                      <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
+                        <div class="nk-int-st">
+                          <input
+                            type="text"
+                            class="form-control input-sm"
+                            value="<%= (locals.blog)?locals.blog.thumbnail : '' %>"
+                            name="thumbnail"
+                            autocomplete="off"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-example-int form-horizental mg-t-15">
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                        <label class="hrzn-fm">Short description</label>
+                      </div>
+                      <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
+                        <div class="nk-int-st">
+                          <textarea
+                            name="description"
+                            class="html-editor"
+                            id="description"
+                          >
+                            <%= (locals.blog)?locals.blog.description : '' %>
+                          </textarea>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-example-int form-horizental mg-t-15">
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                        <label class="hrzn-fm">Content</label>
+                      </div>
+                      <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
+                        <!-- Summernote area Start-->
+                        <div class="nk-int-st">
+                          <textarea
+                            name="content"
+                            class="html-editor"
+                            id="content"
+                          >
+                            <%= (locals.blog)?locals.blog.content : '' %>
+                          </textarea>
+                        </div>
+                        <!-- Summernote area End-->
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-example-int form-horizental mg-t-15">
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                        <label class="hrzn-fm">Other</label>
+                      </div>
+                      <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
+                        <div class="nk-int-st">
+                          <input
+                            type="text"
+                            class="form-control input-sm"
+                            value="<%= (locals.blog)?locals.blog.index : '' %>"
+                            name="index"
+                            autocomplete="off"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-example-int form-horizental mg-t-15">
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                          <label class="hrzn-fm">Highlight</label>
+                      </div>
+                      <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
+                        <div class="nk-int-st">
+                            <select class="form-control input-sm" name="highlight">
+                                <option value="0" <%=((locals.blog && 0 === locals.blog.highlight))?"selected": ""%>>No</option>
+                                <option value="1" <%=((locals.blog && 1 === locals.blog.highlight))?"selected": ""%>>Yes</option>
+                            </select>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-example-int form-horizental mg-t-15">
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                        <label class="hrzn-fm">Keywords</label>
+                      </div>
+                      <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
+                        <div class="nk-int-st">
+                          <input
+                            type="text"
+                            class="form-control input-sm"
+                            value="<%= (locals.blog)?locals.blog.keywords : '' %>"
+                            name="keywords"
+                            autocomplete="off"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-example-int form-horizental mg-t-15">
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                        <label class="hrzn-fm">Category</label>
+                      </div>
+                      <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
+                        <div class="nk-int-st">
+                          <select class="form-control input-sm" name="category">
+                            <%
+                              if(locals.categories) {
+                                locals.categories.forEach(category => { %>
+                              <option value="<%=category.id%>" <%=((locals.blog && category.id === locals.blog.category.id))?"selected": ""%>><%=category.name%></option>
+                            <%  });
+                              }
+                            %>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-example-int mg-t-15">
+                  <div class="row">
+                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12"></div>
+                    <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
+                      <button
+                        class="btn btn-success notika-btn-success waves-effect"
+                        type="submit"
+                      >
+                        Submit
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Blog detail area-->
+    <!-- Start Footer area-->
+    <div class="footer-copyright-area">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="footer-copy-right">
+              <p>
+                Copyright © 2019 . All rights reserved. Developer by
+                <a href="https://github.com/anhnd3" target="_blank">AnhND</a>.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Footer area-->
+    <% include ./static_footer %>
+    <script>
+      $(function() {
+        $("#description").summernote({
+          height: 100, //set editable area's height
+          codemirror: {
+            // codemirror options
+            theme: "monokai"
+          }
+        });
+        $("#content").summernote({
+          height: 600, //set editable area's height
+          codemirror: {
+            // codemirror options
+            theme: "monokai"
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

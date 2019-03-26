@@ -4,7 +4,8 @@
   "description": "serve api CRUD object for website wae.vn",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,13 @@
   "bugs": {
     "url": "https://github.com/anhnd3/wae-v3/issues"
   },
-  "homepage": "https://github.com/anhnd3/wae-v3#readme"
+  "homepage": "https://github.com/anhnd3/wae-v3#readme",
+  "dependencies": {
+    "async": "^2.6.2",
+    "body-parser": "^1.18.3",
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "mongoose": "^5.4.19",
+    "nodemon": "^1.18.10"
+  }
 }

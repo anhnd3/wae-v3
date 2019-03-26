@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html class="no-js" lang="">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Admin WAE | Dashboard</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <% include ./static_header %>
+  </head>
+
+  <body>
+    <!--[if lt IE 8]>
+      <p class="browserupgrade">
+        You are using an <strong>outdated</strong> browser. Please
+        <a href="http://browsehappy.com/">upgrade your browser</a> to improve
+        your experience.
+      </p>
+    <![endif]-->
+    <!-- Start Header Top Area -->
+    <div class="header-top-area">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+            <div class="logo-area">
+              <a href="#">
+                <img src="//wae.vn/static/notika/img/logo/logo.png" alt="" />
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Header Top Area -->
+    <!-- Mobile Menu start -->
+    <div class="mobile-menu-area">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="mobile-menu">
+              <nav id="dropdown">
+                <ul class="mobile-menu-nav">
+                  <li>
+                    <a href="/cmstool">Dashboard</a>
+                  </li>
+                  <li>
+                    <a href="/cmstool/categories">Categories</a>
+                  </li>
+                  <li class="active">
+                    <a href="/cmstool/blogs">Blogs</a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Mobile Menu end -->
+    <!-- Main Menu area start-->
+    <div class="main-menu-area mg-tb-40">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <ul class="nav nav-tabs notika-menu-wrap menu-it-icon-pro">
+              <li>
+                <a href="/cmstool">
+                  <i class="notika-icon notika-house"></i> Dashboard
+                </a>
+              </li>
+              <li>
+                <a href="/cmstool/categories">
+                  <i class="notika-icon notika-form"></i> Categories
+                </a>
+              </li>
+              <li class="active">
+                <a
+                  href="/cmstool/blogs?categoryID=<%= (locals.categoryID)?locals.categoryID: '' %>"
+                >
+                  <i class="notika-icon notika-form"></i> Blogs
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Main Menu area End-->
+    <!-- Start Blog area -->
+    <div class="data-table-area">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="data-table-list">
+              <div class="basic-tb-hd">
+                <h2>Blog</h2>
+                <a
+                  href="/cmstool/blogs/add?categoryID=<%= (locals.categoryID)?locals.categoryID: '' %>"
+                >
+                  <button class="btn btn-success notika-btn-success">
+                    Add
+                  </button>
+                </a>
+              </div>
+              <div class="table-responsive">
+                <table id="data-table-basic" class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Order</th>
+                      <th>Title</th>
+                      <th>Author</th>
+                      <th>CreatedTime</th>
+                      <th>UpdatedTime</th>
+                      <th>Highlight</th>
+                      <th>Keywords</th>
+                      <th>Category</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% if(locals.blogs) { locals.blogs.forEach(blog => { %>
+                    <tr>
+                      <td><%= blog.index %></td>
+                      <td><%= blog.title %></td>
+                      <td><%= blog.author %></td>
+                      <td><%= blog.createdTime %></td>
+                      <td><%= blog.updatedTime %></td>
+                      <td><%= blog.highlight %></td>
+                      <td><%= blog.keywords %></td>
+                      <td><%= blog.category.name %></td>
+                      <td>
+                        <a href="/cmstool/blogs/detail/<%= blog.id %>">
+                          <button class="btn btn-primary notika-btn-primary">
+                            Edit
+                          </button>
+                        </a>
+                        <a href="/cmstool/blogs/delete/<%= blog.id %>">
+                          <button class="btn btn-danger notika-btn-danger">
+                            Delete
+                          </button>
+                        </a>
+                      </td>
+                      <% }) } %>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Blog area-->
+    <!-- Start Footer area-->
+    <div class="footer-copyright-area">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="footer-copy-right">
+              <p>
+                Copyright © 2019 . All rights reserved. Developer by
+                <a href="https://github.com/anhnd3" target="_blank">AnhND</a>.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Footer area-->
+    <% include ./static_footer %>
+  </body>
+</html>

@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html class="no-js" lang="">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Admin WAE | Dashboard</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <% include ./static_header %>
+  </head>
+
+  <body>
+    <!--[if lt IE 8]>
+      <p class="browserupgrade">
+        You are using an <strong>outdated</strong> browser. Please
+        <a href="http://browsehappy.com/">upgrade your browser</a> to improve
+        your experience.
+      </p>
+    <![endif]-->
+    <!-- Start Header Top Area -->
+    <div class="header-top-area">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+            <div class="logo-area">
+              <a href="#"
+                ><img src="//wae.vn/static/notika/img/logo/logo.png" alt=""
+              /></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Header Top Area -->
+    <!-- Mobile Menu start -->
+    <div class="mobile-menu-area">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="mobile-menu">
+              <nav id="dropdown">
+                <ul class="mobile-menu-nav">
+                  <li class="active">
+                    <a href="/cmstool">Dashboard</a>
+                  </li>
+                  <li>
+                    <a href="/cmstool/categories">Categories</a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Mobile Menu end -->
+    <!-- Main Menu area start-->
+    <div class="main-menu-area mg-tb-40">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <ul class="nav nav-tabs notika-menu-wrap menu-it-icon-pro">
+              <li class="active">
+                <a href="/cmstool">
+                  <i class="notika-icon notika-house"></i> Dashboard
+                </a>
+              </li>
+              <li>
+                <a href="/cmstool/categories">
+                  <i class="notika-icon notika-form"></i> Categories
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Main Menu area End-->
+    <!-- Start Main Config area -->
+    <div class="form-example-area">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="form-example-wrap mg-t-30">
+              <div class="cmp-tb-hd cmp-int-hd">
+                <h2>
+                  Main Config
+                </h2>
+              </div>
+              <form
+                name="blog-form-detail"
+                method="POST"
+                action="/cmstool/dashboard/createorupdate"
+              >
+                <div class="form-example-int form-horizental mg-t-15">
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                        <label class="hrzn-fm">Home Title</label>
+                      </div>
+                      <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
+                        <div class="nk-int-st">
+                          <input
+                            type="text"
+                            class="form-control input-sm"
+                            value="<%= (locals.config)?locals.config.homeTitle : '' %>"
+                            name="homeTitle"
+                            autocomplete="off"
+                          />
+                          <input
+                            type="hidden"
+                            class="form-control input-sm"
+                            value="<%= (locals.config)?locals.config.id : '' %>"
+                            name="id"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-example-int form-horizental mg-t-15">
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                        <label class="hrzn-fm">Home Description</label>
+                      </div>
+                      <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
+                        <div class="nk-int-st">
+                          <input
+                            type="text"
+                            class="form-control input-sm"
+                            value="<%= (locals.config)?locals.config.homeDescription : '' %>"
+                            name="homeDescription"
+                            autocomplete="off"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-example-int form-horizental mg-t-15">
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                        <label class="hrzn-fm">Home Thumbnail</label>
+                      </div>
+                      <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
+                        <div class="nk-int-st">
+                          <input
+                            type="text"
+                            class="form-control input-sm"
+                            value="<%= (locals.config)?locals.config.homeThumbnail : '' %>"
+                            name="homeThumbnail"
+                            autocomplete="off"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-example-int form-horizental mg-t-15">
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                        <label class="hrzn-fm">Home AboutMe Content</label>
+                      </div>
+                      <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
+                        <!-- Summernote area Start-->
+                        <div class="nk-int-st">
+                          <textarea
+                            name="homeAboutMeContent"
+                            class="html-editor"
+                            id="content"
+                          >
+                              <%= (locals.config)?locals.config.homeAboutMeContent : '' %>
+                            </textarea
+                          >
+                        </div>
+                        <!-- Summernote area End-->
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-example-int form-horizental mg-t-15">
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                        <label class="hrzn-fm">Home AboutMe Thumbnail</label>
+                      </div>
+                      <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
+                        <div class="nk-int-st">
+                          <input
+                            type="text"
+                            class="form-control input-sm"
+                            value="<%= (locals.config)?locals.config.homeAboutMeThumbnail : '' %>"
+                            name="homeAboutMeThumbnail"
+                            autocomplete="off"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-example-int form-horizental mg-t-15">
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                        <label class="hrzn-fm">Home LatestWorks Title</label>
+                      </div>
+                      <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
+                        <div class="nk-int-st">
+                          <input
+                            type="text"
+                            class="form-control input-sm"
+                            value="<%= (locals.config)?locals.config.homeLatestWorksTitle : '' %>"
+                            name="homeLatestWorksTitle"
+                            autocomplete="off"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-example-int form-horizental mg-t-15">
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                        <label class="hrzn-fm"
+                          >Home LatestWorks Description</label
+                        >
+                      </div>
+                      <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
+                        <div class="nk-int-st">
+                          <input
+                            type="text"
+                            class="form-control input-sm"
+                            value="<%= (locals.config)?locals.config.homeLatestWorksDescription : '' %>"
+                            name="homeLatestWorksDescription"
+                            autocomplete="off"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-example-int form-horizental mg-t-15">
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                        <label class="hrzn-fm">Facebook</label>
+                      </div>
+                      <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
+                        <div class="nk-int-st">
+                          <input
+                            type="text"
+                            class="form-control input-sm"
+                            value="<%= (locals.config)?locals.config.homeFacebook : '' %>"
+                            name="homeFacebook"
+                            autocomplete="off"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-example-int form-horizental mg-t-15">
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                        <label class="hrzn-fm">LinkedIn</label>
+                      </div>
+                      <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
+                        <div class="nk-int-st">
+                          <input
+                            type="text"
+                            class="form-control input-sm"
+                            value="<%= (locals.config)?locals.config.homeLinkedIn : '' %>"
+                            name="homeLinkedIn"
+                            autocomplete="off"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-example-int form-horizental mg-t-15">
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                        <label class="hrzn-fm">Twitter</label>
+                      </div>
+                      <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
+                        <div class="nk-int-st">
+                          <input
+                            type="text"
+                            class="form-control input-sm"
+                            value="<%= (locals.config)?locals.config.homeTwitter : '' %>"
+                            name="homeTwitter"
+                            autocomplete="off"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <hr />
+                <div class="form-example-int form-horizental mg-t-15">
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                        <label class="hrzn-fm">Blog Avatar</label>
+                      </div>
+                      <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
+                        <div class="nk-int-st">
+                          <input
+                            type="text"
+                            class="form-control input-sm"
+                            value="<%= (locals.config)?locals.config.blogAboutAvatar : '' %>"
+                            name="blogAboutAvatar"
+                            autocomplete="off"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-example-int form-horizental mg-t-15">
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                        <label class="hrzn-fm">Blog Author</label>
+                      </div>
+                      <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
+                        <div class="nk-int-st">
+                          <input
+                            type="text"
+                            class="form-control input-sm"
+                            value="<%= (locals.config)?locals.config.blogAboutAuthor : '' %>"
+                            name="blogAboutAuthor"
+                            autocomplete="off"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-example-int form-horizental mg-t-15">
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                        <label class="hrzn-fm">Blog Thumbnail</label>
+                      </div>
+                      <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
+                        <div class="nk-int-st">
+                          <input
+                            type="text"
+                            class="form-control input-sm"
+                            value="<%= (locals.config)?locals.config.blogAboutThumbnail : '' %>"
+                            name="blogAboutThumbnail"
+                            autocomplete="off"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-example-int form-horizental mg-t-15">
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                        <label class="hrzn-fm">Blog Description</label>
+                      </div>
+                      <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
+                        <div class="nk-int-st">
+                          <input
+                            type="text"
+                            class="form-control input-sm"
+                            value="<%= (locals.config)?locals.config.blogAboutDescription : '' %>"
+                            name="blogAboutDescription"
+                            autocomplete="off"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <hr />
+                <div class="form-example-int mg-t-15">
+                  <div class="row">
+                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12"></div>
+                    <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
+                      <button
+                        class="btn btn-success notika-btn-success waves-effect"
+                        type="submit"
+                      >
+                        Submit
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Main Config area-->
+    <!-- Start Footer area-->
+    <div class="footer-copyright-area">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="footer-copy-right">
+              <p>
+                Copyright © 2019 . All rights reserved. Developer by
+                <a href="https://github.com/anhnd3" target="_blank">AnhND</a>.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Footer area-->
+    <% include ./static_footer %>
+    <script>
+      $(function() {
+        $("#content").summernote({
+          height: 100, //set editable area's height
+          codemirror: {
+            // codemirror options
+            theme: "monokai"
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
