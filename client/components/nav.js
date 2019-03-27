@@ -1,59 +1,72 @@
 import React from "react";
 import Link from "next/link";
 
-const links = [
-  { href: "https://github.com/segmentio/create-next-app", label: "Github" }
-].map(link => {
-  link.key = `nav-link-${link.href}-${link.label}`;
-  return link;
-});
-
 const Nav = () => (
-  <nav>
-    <ul>
-      <li>
-        <Link prefetch href="/">
-          <a>Home</a>
-        </Link>
-      </li>
-      <ul>
-        {links.map(({ key, href, label }) => (
-          <li key={key}>
-            <Link href={href}>
-              <a>{label}</a>
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </ul>
+  // <!--
+  //       ==================================================
+  //       Header Section Start
+  //       ================================================== -->
+  <header id="top-bar" className="navbar-fixed-top animated-header">
+    <div className="container">
+      <div className="navbar-header">
+        {/* <!-- responsive nav button --> */}
+        <button
+          type="button"
+          className="navbar-toggle"
+          data-toggle="collapse"
+          data-target=".navbar-collapse"
+        >
+          <span className="sr-only">Toggle navigation</span>
+          <span className="icon-bar" />
+          <span className="icon-bar" />
+          <span className="icon-bar" />
+        </button>
+        {/* <!-- /responsive nav button --> */}
 
-    <style jsx>{`
-      :global(body) {
-        margin: 0;
-        font-family: -apple-system, BlinkMacSystemFont, Avenir Next, Avenir,
-          Helvetica, sans-serif;
-      }
-      nav {
-        text-align: center;
-      }
-      ul {
-        display: flex;
-        justify-content: space-between;
-      }
-      nav > ul {
-        padding: 4px 16px;
-      }
-      li {
-        display: flex;
-        padding: 6px 8px;
-      }
-      a {
-        color: #067df7;
-        text-decoration: none;
-        font-size: 13px;
-      }
-    `}</style>
-  </nav>
+        {/* <!-- logo --> */}
+        <div className="navbar-brand">
+          <Link href="/">
+            <a>
+              <img src="//wae.vn/static/timer/images/logo.png" alt="logo" />
+            </a>
+          </Link>
+        </div>
+        {/* <!-- /logo --> */}
+      </div>
+      {/* <!-- main menu --> */}
+      <nav className="collapse navbar-collapse navbar-right" role="navigation">
+        <div className="main-menu">
+          <ul className="nav navbar-nav navbar-right">
+            <li className="dropdown">
+              <a className="dropdown-toggle" data-toggle="dropdown">
+                Blog <span className="caret" />
+              </a>
+              <div className="dropdown-menu">
+                <ul>
+                  <li>
+                    <Link href="/blog?category=123" as="/blog/123">
+                      <a>Arduino cơ bản</a>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/blog?category=1234" as="/blog/1234">
+                      <a>Arduino trong IoT</a>
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li>
+              <Link href="/about">
+                <a>Về chúng tôi</a>
+              </Link>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      {/* <!-- /main nav --> */}
+    </div>
+  </header>
 );
 
 export default Nav;

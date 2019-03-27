@@ -8,29 +8,57 @@ const defaultOGImage = "";
 
 const Head = props => (
   <NextHead>
-    <meta charSet="UTF-8" />
-    <title>{props.title || ""}</title>
-    <meta
-      name="description"
-      content={props.description || defaultDescription}
-    />
+    {/* <!-- Basic Page Needs
+        ================================================== --> */}
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="icon" type="image/png" href="images/favicon.png" />
+    <title>{props.title}</title>
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="author" content="" />
+    {/* <!-- Mobile Specific Metas
+        ================================================== --> */}
+    <meta name="format-detection" content="telephone=no" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" sizes="192x192" href="/static/touch-icon.png" />
-    <link rel="apple-touch-icon" href="/static/touch-icon.png" />
-    <link rel="mask-icon" href="/static/favicon-mask.svg" color="#49B882" />
-    <link rel="icon" href="/static/favicon.ico" />
-    <meta property="og:url" content={props.url || defaultOGURL} />
-    <meta property="og:title" content={props.title || ""} />
-    <meta
-      property="og:description"
-      content={props.description || defaultDescription}
+    {/* <!-- Template CSS Files
+        ================================================== --> */}
+    {/* <!-- Twitter Bootstrs CSS --> */}
+    <link rel="stylesheet" href="//wae.vn/static/timer/css/bootstrap.min.css" />
+    {/* <!-- Ionicons Fonts Css --> */}
+    <link rel="stylesheet" href="//wae.vn/static/timer/css/ionicons.min.css" />
+    {/* <!-- animate css --> */}
+    <link rel="stylesheet" href="//wae.vn/static/timer/css/animate.css" />
+    {/* <!-- Hero area slider css--> */}
+    <link rel="stylesheet" href="//wae.vn/static/timer/css/slider.css" />
+    {/* <!-- owl craousel css --> */}
+    <link rel="stylesheet" href="//wae.vn/static/timer/css/owl.carousel.css" />
+    <link rel="stylesheet" href="//wae.vn/static/timer/css/owl.theme.css" />
+    <link
+      rel="stylesheet"
+      href="//wae.vn/static/timer/css/jquery.fancybox.css"
     />
-    <meta name="twitter:site" content={props.url || defaultOGURL} />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:image" content={props.ogImage || defaultOGImage} />
-    <meta property="og:image" content={props.ogImage || defaultOGImage} />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
+    {/* <!-- template main css file --> */}
+    <link rel="stylesheet" href="//wae.vn/static/timer/css/main.css" />
+    {/* <!-- responsive css --> */}
+    <link rel="stylesheet" href="//wae.vn/static/timer/css/responsive.css" />
+    {/* <!-- Template Javascript Files
+        ================================================== --> */}
+    {/* <!-- modernizr js --> */}
+    <script src="//wae.vn/static/timer/js/vendor/modernizr-2.6.2.min.js" />
+    {/* <!-- jquery --> */}
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" />
+    {/* <!-- owl carouserl js --> */}
+    <script src="//wae.vn/static/timer/js/owl.carousel.min.js" />
+    {/* <!-- bootstrap js --> */}
+    <script src="//wae.vn/static/timer/js/bootstrap.min.js" />
+    {/* <!-- wow js --> */}
+    <script src="//wae.vn/static/timer/js/wow.min.js" />
+    {/* <!-- slider js --> */}
+    <script src="//wae.vn/static/timer/js/slider.js" />
+    <script src="//wae.vn/static/timer/js/jquery.fancybox.js" />
+    {/* <!-- template main js --> */}
+    <script src="//wae.vn/static/timer/js/main.js" />
   </NextHead>
 );
 

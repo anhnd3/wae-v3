@@ -1,4 +1,6 @@
 import React from "react";
+import { withRouter } from "next/router";
+
 import Head from "../components/head";
 import Nav from "../components/nav";
 import Author from "../components/widget_author";
@@ -6,16 +8,16 @@ import RecentPost from "../components/widget_recent_post";
 import Search from "../components/search";
 import ArticleBlog from "../components/article_blog";
 
-const Home = () => (
+const Blog = withRouter(props => (
   <div>
-    <Head title="Home" />
+    <Head title={props.router.query.category} />
     <Nav />
     <section className="global-page-header">
       <div className="container">
         <div className="row">
           <div className="col-md-12">
             <div className="block">
-              <h2>Bài viết - Giáo trình</h2>
+              <h2>{props.router.query.category}</h2>
             </div>
           </div>
         </div>
@@ -30,27 +32,6 @@ const Home = () => (
               <Search />
               <Author />
               <RecentPost />
-
-              <div className="categories widget">
-                <h3 className="widget-head">Categories</h3>
-                <ul>
-                  <li>
-                    <a href="">Audio</a> <span className="badge">1</span>
-                  </li>
-                  <li>
-                    <a href="">Gallery</a> <span className="badge">2</span>
-                  </li>
-                  <li>
-                    <a href="">Image</a> <span className="badge">4</span>
-                  </li>
-                  <li>
-                    <a href="">Standard</a> <span className="badge">2</span>
-                  </li>
-                  <li>
-                    <a href="">Status</a> <span className="badge">3</span>
-                  </li>
-                </ul>
-              </div>
             </div>
           </div>
 
@@ -123,13 +104,16 @@ const Home = () => (
         </div>
       </div>
     </section>
-
     <style jsx>{`
       .sidebar {
         padding-top: 20px;
       }
     `}</style>
   </div>
-);
+));
 
-export default Home;
+Blog.getInitialProps = ({ pathname, query }) => ({
+  custom: "custom" // pass some custom props to component
+});
+
+export default Blog;
