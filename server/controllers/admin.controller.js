@@ -30,24 +30,6 @@ const config_createorupdate = (req, res) => {
     blogAboutDescription
   } = req.body;
 
-  console.log(
-    id,
-    homeTitle,
-    homeDescription,
-    homeThumbnail,
-    homeAboutMeContent,
-    homeAboutMeThumbnail,
-    homeLatestWorksTitle,
-    homeLatestWorksDescription,
-    homeFacebook,
-    homeLinkedIn,
-    homeTwitter,
-    blogAboutAvatar,
-    blogAboutThumbnail,
-    blogAboutAuthor,
-    blogAboutDescription
-  );
-
   if (!id) {
     const config = new Config({
       homeTitle,
@@ -166,7 +148,6 @@ const blog = (req, res) => {
     .exec((err, blogs) => {
       if (err) return res.status(500).send(err);
 
-      console.log(blogs);
       res.render("blog", { blogs: blogs, categoryID: categoryID });
     });
 };

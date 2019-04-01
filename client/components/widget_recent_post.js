@@ -1,37 +1,27 @@
 import React from "react";
 import Link from "next/link";
 
-const WidgetRecentPost = () => (
-  <div className="recent-post widget">
-    <h3>Recent Posts</h3>
-    <ul>
-      <li>
-        <a href="#">Corporate meeting turns into a photoshooting.</a>
-        <br />
-        <time>16 May, 2015</time>
-      </li>
-      <li>
-        <a href="#">Statistics,analysis. The key to succes.</a>
-        <br />
-        <time>15 May, 2015</time>
-      </li>
-      <li>
-        <a href="#">Blog post without image, only text.</a>
-        <br />
-        <time>14 May, 2015</time>
-      </li>
-      <li>
-        <a href="#">Blog post with audio player. Share your creations.</a>
-        <br />
-        <time>14 May, 2015</time>
-      </li>
-      <li>
-        <a href="#">Blog post with classic Youtbube player.</a>
-        <br />
-        <time>12 May, 2015</time>
-      </li>
-    </ul>
-  </div>
-);
+const WidgetRecentPost = props => {
+  const { recentPost } = props;
 
+  if (!recentPost || recentPost.length === 0) {
+    return "";
+  }
+
+  let listRecentPost = recentPost.map(blog => (
+    <li key={`recent-post-${blog._id}`}>
+      <Link href={`/blog_detail?blog=${blog._id}`}>
+        <a>{blog.title}</a>
+      </Link>
+      <time>{blog.time}</time>
+    </li>
+  ));
+
+  return (
+    <div className="recent-post widget">
+      <h3>Bài viết liên quan</h3>
+      <ul>{listRecentPost}</ul>
+    </div>
+  );
+};
 export default WidgetRecentPost;

@@ -10,9 +10,13 @@ const Head = props => (
   <NextHead>
     {/* <!-- Basic Page Needs
         ================================================== --> */}
-    <meta charset="utf-8" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link rel="icon" type="image/png" href="images/favicon.png" />
+    <meta charSet="utf-8" />
+    <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
+    <link
+      rel="icon"
+      type="image/png"
+      href="//wae.vn/static/timer/images/favicon.png"
+    />
     <title>{props.title}</title>
     <meta name="description" content="" />
     <meta name="keywords" content="" />

@@ -1,19 +1,22 @@
 import React from "react";
-import { withRouter } from "next/router";
+
+import axios from "axios";
 
 import Head from "../components/head";
 import Nav from "../components/nav";
+import Footer from "../components/footer";
 
-const Blog = withRouter(props => (
+const BlogDetail = props => (
   <div>
-    <Head title={props.router.query.blog} />
-    <Nav />
+    <Head title="" />
+    <Nav categories={props.categories} />
+
     <section className="global-page-header">
       <div className="container">
         <div className="row">
           <div className="col-md-12">
             <div className="block">
-              <h2>{props.router.query.blog}</h2>
+              <h2>Demo</h2>
             </div>
           </div>
         </div>
@@ -97,11 +100,17 @@ const Blog = withRouter(props => (
         </div>
       </div>
     </section>
+
+    <Footer
+      facebook={props.config.homeFacebook}
+      linkedin={props.config.homeLinkedIn}
+    />
   </div>
-));
+);
 
-Blog.getInitialProps = ({ pathname, query }) => ({
-  custom: "custom" // pass some custom props to component
-});
+BlogDetail.getInitialProps = async ({ query }) => {
+  const resConfig = await axios.get(`http://wae.vn/api/config`);
+  return resConfig.data.data;
+};
 
-export default Blog;
+export default BlogDetail;
