@@ -1,24 +1,37 @@
-import React from "react";
+import React, { Component } from "react";
 import Link from "next/link";
 
-const WidgetRecentPost = () => (
-  <div className="search widget">
-    <form action="" method="get" className="searchform" role="search">
-      <div className="input-group">
-        <input
-          type="text"
-          className="form-control"
-          placeholder="Search for..."
-        />
-        <span className="input-group-btn">
-          <button className="btn btn-default" type="button">
-            {" "}
-            <i className="ion-search" />{" "}
-          </button>
-        </span>
-      </div>
-    </form>
-  </div>
-);
+export default class SearchBox extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { searchData: "" };
+  }
 
-export default WidgetRecentPost;
+  handleSearchChange = event => {
+    // console.log(this.state.searchData);
+    const dataSearch = event.target.value;
+    this.setState({ searchData: dataSearch });
+  };
+
+  render() {
+    return (
+      <div className="search widget">
+        <div className="input-group">
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Search for..."
+            onChange={this.handleSearchChange}
+          />
+          <span className="input-group-btn">
+            <Link href={`/search?keywords=${this.state.searchData}`}>
+              <button className="btn btn-default" type="button">
+                <i className="ion-search" />
+              </button>
+            </Link>
+          </span>
+        </div>
+      </div>
+    );
+  }
+}

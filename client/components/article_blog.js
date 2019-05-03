@@ -26,6 +26,7 @@ const ArticleBlog = props => {
           <span>
             by <a>{props.author}</a>
           </span>
+          {props.keywords}
         </div>
         <p>{props.desc}</p>
         <Link href={`${props.link}?blog=${props.blog}`}>

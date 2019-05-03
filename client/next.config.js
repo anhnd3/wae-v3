@@ -5,16 +5,17 @@ module.exports = {
   webpack: config => {
     config.output.publicPath =
       process.env.NODE_ENV === "production"
-        ? `//wae.vn/static/wae${config.output.publicPath}`
+        ? `//wae.vn/static/wae/${config.output.publicPath}`
         : `${config.output.publicPath}`;
     return config;
+  },
+  exportPathMap: function() {
+    return {
+      "/": { page: "/" },
+      "/about": { page: "/about" },
+      "/blog": { page: "/blog" },
+      "/blog_detail": { page: "/blog_detail" },
+      "/search": { page: "/search" }
+    };
   }
-  // exportPathMap: function() {
-  //   return {
-  //     "/": { page: "/" },
-  //     "/about": { page: "/about" },
-  //     "/blog": { page: "/blog" },
-  //     "/blog_detail": { page: "/blog_detail" }
-  //   };
-  // }
 };

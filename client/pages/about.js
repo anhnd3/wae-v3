@@ -6,6 +6,40 @@ import Head from "../components/head";
 import Nav from "../components/nav";
 import Footer from "../components/footer";
 
+const renderListHighlightBlog = blogs => {
+  if (blogs.length <= 0) {
+    return "";
+  }
+  const htmlHighlightBlog = blogs.map(blog => {
+    console.log(blog);
+    return (
+      <div className="col-sm-4 col-xs-12" key={blog._id}>
+        <figure
+          className="wow fadeInLeft animated portfolio-item"
+          data-wow-duration="500ms"
+          data-wow-delay="0ms"
+        >
+          <div className="img-wrapper">
+            <img
+              src={blog.thumbnail}
+              className="img-responsive"
+              alt={blog.title}
+            />
+          </div>
+          <figcaption>
+            <h4>
+              <a href="">{blog.title}</a>
+            </h4>
+            <p>{blog.description}</p>
+          </figcaption>
+        </figure>
+      </div>
+    );
+  });
+
+  return htmlHighlightBlog;
+};
+
 const About = props => {
   const aboutMeContent = (
     <div
@@ -91,69 +125,7 @@ const About = props => {
             </p>
           </div>
           <div className="row">
-            <div className="col-sm-4 col-xs-12">
-              <figure
-                className="wow fadeInLeft animated portfolio-item"
-                data-wow-duration="500ms"
-                data-wow-delay="0ms"
-              >
-                <div className="img-wrapper">
-                  <img
-                    src="//wae.vn/static/timer/images/portfolio/item-1.jpg"
-                    className="img-responsive"
-                    alt="this is a title"
-                  />
-                </div>
-                <figcaption>
-                  <h4>
-                    <a href="#">Dew Drop</a>
-                  </h4>
-                  <p>Redesigne UI Concept</p>
-                </figcaption>
-              </figure>
-            </div>
-            <div className="col-sm-4 col-xs-12">
-              <figure
-                className="wow fadeInLeft animated"
-                data-wow-duration="500ms"
-                data-wow-delay="300ms"
-              >
-                <div className="img-wrapper">
-                  <img
-                    src="//wae.vn/static/timer/images/portfolio/item-2.jpg"
-                    className="img-responsive"
-                    alt="this is a title"
-                  />
-                </div>
-                <figcaption>
-                  <h4>
-                    <a href="#">Bottle Mockup</a>
-                  </h4>
-                  <p>Lorem ipsum dolor sit.</p>
-                </figcaption>
-              </figure>
-            </div>
-            <div className="col-sm-4 col-xs-12">
-              <figure
-                className="wow fadeInLeft animated"
-                data-wow-duration="500ms"
-                data-wow-delay="300ms"
-              >
-                <div className="img-wrapper">
-                  <img
-                    src="//wae.vn/static/timer/images/portfolio/item-3.jpg"
-                    className="img-responsive"
-                    alt=""
-                  />
-                </div>
-                <figcaption>
-                  <h4>
-                    <a href="#">Table Design</a>
-                  </h4>
-                  <p>Lorem ipsum dolor sit amet.</p>
-                </figcaption>
-              </figure>
-            </div>
+            {renderListHighlightBlog(props.blogsHighlight)}
           </div>
         </div>
       </section>
@@ -172,8 +144,6 @@ const About = props => {
 
 About.getInitialProps = async () => {
   const resConfig = await axios.get(`http://wae.vn/api/config`);
-
-  console.log(resConfig.data.data);
 
   return resConfig.data.data;
 };

@@ -29,6 +29,11 @@ const config = (req, res) => {
       },
       config: cbConfig => {
         Config.findOne({}).exec(cbConfig);
+      },
+      blogsHighlight: cbGetBlogHighlight => {
+        Blog.find({ highlight: 1 })
+          .populate("category")
+          .exec(cbGetBlogHighlight);
       }
     },
     function(err, result) {
@@ -66,7 +71,7 @@ const getListBlogByCategoryAndLimit = (req, res) => {
     Blog.find()
       .populate("category")
       .skip(skip)
-      .limit(limit)
+      .limit(parseInt(limit))
       .exec((err, blogs) => {
         if (err) return res.status(500).send(err);
         return res
@@ -76,6 +81,19 @@ const getListBlogByCategoryAndLimit = (req, res) => {
   }
 };
 
+const getListBlogBySearch = (req, res) => {
+  let keywords = req.query.keywords || "";
+
+  Blog.find({ keywords: { $regex: new RegExp(keywords.toLowerCase(), "i") } })
+    .populate("category")
+    .exec((err, blogs) => {
+      if (err) return res.status(500).send(err);
+      return res
+        .status(200)
+        .send({ returnCode: 0, returnMessage: "Success", data: blogs });
+    });
+};
+
 module.exports = {
   maintenance,
   config,
@@ -83,5 +101,6 @@ module.exports = {
   about,
   blog,
   blog_detail,
-  getListBlogByCategoryAndLimit
+  getListBlogByCategoryAndLimit,
+  getListBlogBySearch
 };

@@ -6,12 +6,14 @@ module.exports = app => {
     // res.render("mainsite");
   });
   app.get("/about", mainsiteController.about);
-  app.get("/blog/:id", mainsiteController.blog);
-  app.get("/blog_detail/:id", mainsiteController.blog_detail);
+  app.get("/blog", mainsiteController.blog);
+  app.get("/blog_detail", mainsiteController.blog_detail);
   app.get("/maintenance", mainsiteController.maintenance);
+
   app.get("/api/config", mainsiteController.config);
   app.get(
     "/api/mainsite/blog",
     mainsiteController.getListBlogByCategoryAndLimit
   );
+  app.get("/api/mainsite/blogsearch", mainsiteController.getListBlogBySearch);
 };

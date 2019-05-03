@@ -2,7 +2,6 @@ import React from "react";
 
 import axios from "axios";
 
-import Link from "next/link";
 import Head from "../components/head";
 import Nav from "../components/nav";
 import Author from "../components/widget_author";
@@ -11,23 +10,10 @@ import Search from "../components/search";
 import ArticleBlog from "../components/article_blog";
 import Footer from "../components/footer";
 
-const renderListCategory = categories => {
-  const liCategories = categories.map(category => {
-    return (
-      <li key={category._id}>
-        <Link
-          href={`/blog?category=${category._id}`}
-          as={`/blog/${category._id}`}
-        >
-          <a>{category.name}</a>
-        </Link>
-      </li>
-    );
-  });
-  return liCategories;
-};
-
 const renderListBlog = blogs => {
+  if (blogs.length === 0) {
+    return <div>Không tìm thấy bài viết nào</div>;
+  }
   const articleBlog = blogs.map(blog => {
     return (
       <ArticleBlog
@@ -40,69 +26,23 @@ const renderListBlog = blogs => {
         date={new Date(blog.createdTime).toLocaleDateString("de-DE")}
         author={blog.author}
         desc={blog.description}
-        keywords={blog.keywords}
       />
     );
   });
   return articleBlog;
 };
-const renderNavBlog = (page, blogs) => {
-  let nav = "",
-    navPre,
-    navNext;
 
-  if (page > 2) {
-    navPre = (
-      <li className="previous">
-        <Link href={`/?p=${page - 1}`}>
-          <span aria-hidden="true">&larr;</span> Older
-        </Link>
-      </li>
-    );
-  } else if (page > 1) {
-    navPre = (
-      <li className="previous">
-        <Link href={`/`}>
-          <span aria-hidden="true">&larr;</span> Older
-        </Link>
-      </li>
-    );
-  } else {
-    navPre = "";
-  }
-
-  if (blogs && blogs.length == 3) {
-    <li className="next">
-      <Link href={`/?p=${page + 1}`}>
-        Newer <span aria-hidden="true">&rarr;</span>
-      </Link>
-    </li>;
-  } else {
-    navNext = "";
-  }
-
-  nav = (
-    <nav aria-label="Blog Navigator">
-      <ul className="pager">
-        {navPre}
-        {navNext}
-      </ul>
-    </nav>
-  );
-  return nav;
-};
-
-const Home = props => {
+const SearchPage = props => {
   return (
     <div>
-      <Head title="Home" />
+      <Head title={`Search by ${props.keywords}`} />
       <Nav categories={props.config.categories} />
       <section className="global-page-header">
         <div className="container">
           <div className="row">
             <div className="col-md-12">
               <div className="block">
-                <h2>Bài viết</h2>
+                <h2>Tìm kiếm: {props.keywords}</h2>
               </div>
             </div>
           </div>
@@ -122,17 +62,13 @@ const Home = props => {
                   description={props.config.config.blogAboutDescription}
                 />
                 <RecentPost recentPost={props.recentPost} />
-
-                <div className="categories widget">
-                  <h3 className="widget-head">Chủ đề</h3>
-                  <ul>{renderListCategory(props.config.categories)}</ul>
-                </div>
               </div>
             </div>
 
             <div className="col-md-8">
+              <h3>Từ khoá: "{props.keywords}"</h3>
               {renderListBlog(props.blogs)}
-              {renderNavBlog(props.blogs)}
+              {/* {renderNavBlog(props.blogs)} */}
             </div>
           </div>
         </div>
@@ -142,28 +78,29 @@ const Home = props => {
         facebook={props.config.config.homeFacebook}
         linkedin={props.config.config.homeLinkedIn}
       />
+      <style jsx>{`
+        .sidebar {
+          padding-top: 20px;
+        }
+      `}</style>
     </div>
   );
 };
 
-Home.getInitialProps = async ({ query }) => {
+SearchPage.getInitialProps = async ({ query }) => {
   // query main blogs
-  let page = query.page || 1;
+  let keywords = query.keywords || "";
 
-  const resHome = await axios.get(`http://wae.vn/api/config`);
+  const resConfig = await axios.get(`http://wae.vn/api/config`);
 
-  const resBlog = await axios.get(
-    `http://wae.vn/api/mainsite/blog?page=${page}`
+  const resBlogSearch = await axios.get(
+    `http://wae.vn/api/mainsite/blogsearch?keywords=${keywords}`
   );
 
-  // query recent post
-  const resRecentPost = await axios.get("http://wae.vn/api/mainsite/blog");
-
   return {
-    config: resHome.data.data,
-    blogs: resBlog.data.data,
-    recentPost: resRecentPost.data.data
+    keywords: keywords,
+    config: resConfig.data.data,
+    blogs: resBlogSearch.data.data
   };
 };
-
-export default Home;
+export default SearchPage;

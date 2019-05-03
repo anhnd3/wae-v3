@@ -12,6 +12,7 @@ import Footer from "../components/footer";
 
 const renderListBlog = blogs => {
   const articleBlog = blogs.map(blog => {
+    console.log(blog);
     return (
       <ArticleBlog
         key={blog._id}
@@ -20,9 +21,10 @@ const renderListBlog = blogs => {
         link="/blog_detail"
         blog={blog._id}
         image={blog.thumbnail}
-        date={new Date(blog.time).toLocaleDateString()}
+        date={new Date(blog.createdTime).toLocaleDateString("de-DE")}
         author={blog.author}
-        desc={blog.desc}
+        desc={blog.description}
+        keywords={blog.keywords}
       />
     );
   });
@@ -79,18 +81,16 @@ const Blog = props => {
     return category._id === props.category;
   });
 
-  console.log(selectedCategory);
-
   return (
     <div>
-      <Head title={selectedCategory.name} />
+      <Head title={selectedCategory ? selectedCategory.name : "Blog"} />
       <Nav categories={props.config.categories} />
       <section className="global-page-header">
         <div className="container">
           <div className="row">
             <div className="col-md-12">
               <div className="block">
-                <h2>{selectedCategory.name}</h2>
+                <h2>{selectedCategory ? selectedCategory.name : "Blog"}</h2>
               </div>
             </div>
           </div>
@@ -104,17 +104,19 @@ const Blog = props => {
               <div className="sidebar">
                 <Search />
                 <Author
-                  name={props.config.blogAboutAuthor}
-                  avatar={props.config.blogAboutAvatar}
-                  thumbnail={props.config.blogAboutThumbnail}
-                  description={props.config.blogAboutDescription}
+                  name={props.config.config.blogAboutAuthor}
+                  avatar={props.config.config.blogAboutAvatar}
+                  thumbnail={props.config.config.blogAboutThumbnail}
+                  description={props.config.config.blogAboutDescription}
                 />
                 <RecentPost recentPost={props.recentPost} />
               </div>
             </div>
 
             <div className="col-md-8">
-              <h3>{selectedCategory.description}</h3>
+              <h3>
+                {selectedCategory ? selectedCategory.description : "Mô tả"}
+              </h3>
               {renderListBlog(props.blogs)}
               {renderNavBlog(props.blogs)}
             </div>
@@ -140,28 +142,22 @@ Blog.getInitialProps = async ({ query }) => {
   let page = query.page || 1;
   let category = query.category || "";
 
-  console.log(page, category);
+  const resConfig = await axios.get(`http://wae.vn/api/config`);
 
-  if (category) {
-    const resConfig = await axios.get(`http://wae.vn/api/config`);
+  const resBlog = await axios.get(
+    `http://wae.vn/api/mainsite/blog?category=${category}&page=${page}&limit=3`
+  );
 
-    const resBlog = await axios.get(
-      `http://wae.vn/api/mainsite/blog?category=${category}&page=${page}&limit=3`
-    );
+  // query recent post
+  const resRecentPost = await axios.get(
+    `http://wae.vn/api/mainsite/blog?category=${category}&limit=20`
+  );
 
-    // query recent post
-    const resRecentPost = await axios.get(
-      `http://wae.vn/api/mainsite/blog?category=${category}&limit=20`
-    );
-
-    return {
-      category: category,
-      config: resConfig.data.data,
-      blogs: resBlog.data.data,
-      recentPost: resRecentPost.data.data
-    };
-  }
-
-  return {};
+  return {
+    category: category,
+    config: resConfig.data.data,
+    blogs: resBlog.data.data,
+    recentPost: resRecentPost.data.data
+  };
 };
 export default Blog;
