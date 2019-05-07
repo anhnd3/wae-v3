@@ -3,8 +3,8 @@ const mainsiteController = require("../controllers/mainsite.controller");
 module.exports = app => {
   app.get("/", (req, res) => {
     res.redirect("/maintenance");
-    // res.render("mainsite");
   });
+  // app.get("/", mainsiteController.index);
   app.get("/about", mainsiteController.about);
   app.get("/blog", mainsiteController.blog);
   app.get("/blog_detail", mainsiteController.blog_detail);
@@ -16,4 +16,5 @@ module.exports = app => {
     mainsiteController.getListBlogByCategoryAndLimit
   );
   app.get("/api/mainsite/blogsearch", mainsiteController.getListBlogBySearch);
+  app.get("/search", mainsiteController.search);
 };

@@ -20,6 +20,9 @@ const blog = (req, res) => {
 const blog_detail = (req, res) => {
   res.render("mainsite_blog_detail");
 };
+const search = (req, res) => {
+  res.render("mainsite_search");
+};
 
 const config = (req, res) => {
   async.parallel(
@@ -101,6 +104,7 @@ module.exports = {
   about,
   blog,
   blog_detail,
+  search,
   getListBlogByCategoryAndLimit,
   getListBlogBySearch
 };
