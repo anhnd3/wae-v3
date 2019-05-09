@@ -9,8 +9,25 @@ const handle = app.getRequestHandler();
 app.prepare().then(() => {
   const server = express();
 
-  server.get("*", (req, res) => {
-    return handle(req, res);
+  server.get("/", (req, res) => {
+    const actualPage = "/index";
+    app.render(req, res, actualPage, req.query);
+  });
+  server.get("/blog", (req, res) => {
+    const actualPage = "/blog";
+    app.render(req, res, actualPage, req.query);
+  });
+  server.get("/blog_detail", (req, res) => {
+    const actualPage = "/blog_detail";
+    app.render(req, res, actualPage, req.query);
+  });
+  server.get("/about", (req, res) => {
+    const actualPage = "/about";
+    app.render(req, res, actualPage, req.query);
+  });
+  server.get("/search", (req, res) => {
+    const actualPage = "/about";
+    app.render(req, res, actualPage, req.query);
   });
 
   server.listen(port, err => {

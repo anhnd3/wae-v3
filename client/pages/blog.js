@@ -12,7 +12,6 @@ import Footer from "../components/footer";
 
 const renderListBlog = blogs => {
   const articleBlog = blogs.map(blog => {
-    console.log(blog);
     return (
       <ArticleBlog
         key={blog._id}

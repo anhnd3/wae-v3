@@ -11,7 +11,6 @@ const renderListHighlightBlog = blogs => {
     return "";
   }
   const htmlHighlightBlog = blogs.map(blog => {
-    console.log(blog);
     return (
       <div className="col-sm-4 col-xs-12" key={blog._id}>
         <figure
