@@ -59,7 +59,7 @@ BlogDetail.getInitialProps = async ({ query }) => {
   let blog = query.blog || "";
 
   const resBlog = await axios.get(`http://wae.vn/api/blogs/${blog}`);
-  console.log(resBlog);
+  // console.log(resBlog);
 
   return {
     config: resConfig.data.data,
